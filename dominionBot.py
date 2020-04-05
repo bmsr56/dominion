@@ -15,8 +15,8 @@ element = wait.until(EC.element_to_be_clickable((By.ID, 'username-input')))
 
 loginForm = driver.find_element_by_name('loginForm')
 _inputs = driver.find_elements_by_xpath('//form[@name="loginForm"]//input')
-_inputs[0].send_keys("cavegiraffe")
-_inputs[1].send_keys("Hh100896")
+_inputs[0].send_keys("u")
+_inputs[1].send_keys("p")
 loginForm.submit()
 element = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'tab-button')))
 
