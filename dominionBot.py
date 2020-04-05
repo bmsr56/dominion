@@ -15,8 +15,8 @@ element = wait.until(EC.element_to_be_clickable((By.ID, 'username-input')))
 
 loginForm = driver.find_element_by_name('loginForm')
 _inputs = driver.find_elements_by_xpath('//form[@name="loginForm"]//input')
-_inputs[0].send_keys("u")
-_inputs[1].send_keys("p")
+_inputs[0].send_keys("cavegiraffe")
+_inputs[1].send_keys("Hh100896")
 loginForm.submit()
 element = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'tab-button')))
 
@@ -39,5 +39,21 @@ for i in range(len(supply)):
     cardNames.append(cardName)
 print(len(cardNames))
 
+#buy phase stuff
+#autoplay treasure
+autoTreasure = driver.find_element(By.XPATH, "//*[contains(text(), 'Autoplay Treasures')]")
+autoTreasure.click()
+
+#buy a card
+for i in range(len(supply)):
+    cardCost = 0
+    try:
+        cardCost = int(supply[i].find_element_by_class_name("coin-cost-mini-text").text)
+    except:
+        print("no cost")
+    if cardCost < 4:
+            print("Found one")
+            buyCard = supply[i].find_element_by_class_name("mini-card").click()
+            break
 
 #driver.quit()
