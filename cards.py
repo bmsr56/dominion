@@ -1,33 +1,17 @@
 class Card:
     """ Base class for a Dominion Card.
     """
-    cardType = None
+    category = []
     abilities = {
         'plusActions': None,
         'plusDraws': None,
         'plusBuys': None, 
-        'plusMoney': None
+        'plusMoney': None,
+        'curse': None
     }
 
     def __init__(self):
-        self.title = title 
-        self.parentSet = parentSet
-    
-    def set_plusActions(self, val: int) -> None:
-        self.abilities['plusActions'] = val
-        return
-
-    def set_plusDraws(self, val: int) -> None:
-        self.abilities['plusDraws'] = val
-        return
-
-    def set_plusBuys(self, val: int) -> None:
-        self.abilities['plusBuys'] = val
-        return
-
-    def set_plusMoney(self, val: int) -> None:
-        self.abilities['plusMoney'] = val
-        return
+        pass
     
     def print(self) -> None:
         """ Print the card in a human-readable format
@@ -36,18 +20,23 @@ class Card:
 
 
 class ActionCard(Card):
-    
+
+    cardTypes = 'action'
+
     def __init__(self):
         super().__init__()
 
+    
 
 class TreasureCard(Card):
 
+    cardType = 'treasure'
+
     def __init__(self):
         super().__init__()
 
 
-class AttackCard(Card):
+class AttackCard(ActionCard):
 
     def __init__(self):
         super().__init__()
