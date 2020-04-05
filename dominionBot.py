@@ -8,26 +8,36 @@ driver = webdriver.Chrome(executable_path=r'C:/Users/hanna/Documents/ChromeDrive
 
 
 #connect to dominion
+driver.implicitly_wait(10) # seconds
 driver.get("https://dominion.games")
 wait = WebDriverWait(driver, 10)
 element = wait.until(EC.element_to_be_clickable((By.ID, 'username-input')))
 
 loginForm = driver.find_element_by_name('loginForm')
 _inputs = driver.find_elements_by_xpath('//form[@name="loginForm"]//input')
-_inputs[0].send_keys("USERNAME")
-_inputs[1].send_keys("PASSWORD")
+_inputs[0].send_keys("cavegiraffe")
+_inputs[1].send_keys("Hh100896")
 loginForm.submit()
 element = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'tab-button')))
 
 #start bot game
 bot_match = driver.find_element(By.XPATH, "//button[contains(.,'1 Bot')]")
 bot_match.click()
+start = driver.find_element(By.XPATH, "//*[contains(text(), 'Start Game')]")
+start.click()
 
-# =============================================================================
-# 
-# #untested
-# kingdomCards = driver.find_elements_by_xpath("//div[@ng-repeat='kingdom-viewer-group' and contains(., 'card in group')]")
-# =============================================================================
+#get/print cards in supply
+supply = driver.find_elements_by_class_name("visible-supply")
+driver.implicitly_wait(10)
+cardNames = []
+for i in range(len(supply)):
+    try:
+        cardName= supply[i].find_element_by_class_name("full-card-name").text
+    except:
+        cardName= supply[i].find_element_by_class_name("landscape-name").text
+    print(cardName)
+    cardNames.append(cardName)
+print(len(cardNames))
 
 
 #driver.quit()
